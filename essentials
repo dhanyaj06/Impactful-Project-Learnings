@@ -1,0 +1,31 @@
+PyPDFLoader: For efficient extraction of data from PDF files.
+SentenceTransformerEmbeddings: For generating embeddings to compare and analyze text similarity.
+Chroma: A versatile tool for storing and managing vector embeddings.
+RecursiveCharacterTextSplitter: To facilitate recursive text splitting using various characters for optimal results.
+HuggingFaceEndpoint: Provides access to the Hugging Face Hub models for natural language processing tasks.
+ConversationBufferMemory: A memory buffer for storing and extracting conversation messages.
+PromptTemplate: Enables the creation of customized prompts for language models, enhancing interaction.
+ConversationalRetrievalChain: Utilized for building conversational question-answering chains, enhancing dialogue flow.
+
+Text Processing and Analysis
+Text Chunking: The RecursiveCharacterTextSplitter is used to chunk the text into smaller, manageable pieces. This is beneficial for processing large volumes of text efficiently and avoiding memory constraints.
+
+Document Splitting: Each page of the PDF file (pdf_pages) is split into smaller documents using the chunking technique. This allows for more granular processing and analysis of the text content.
+
+Embedding Generation: The SentenceTransformerEmbeddings model is employed to generate embeddings for the text. Embeddings are fixed-size vector representations that capture semantic information about the text. This step is crucial for tasks such as text similarity comparison and classification.
+
+Embedding Storage: The generated embeddings are stored using Chroma, which provides a convenient storage mechanism for vector embeddings. Storing embeddings allows for efficient retrieval and comparison of text data during subsequent analysis tasks.
+
+ACCESSING GOOGLE GEMMA USING HUGGING FACE
+The provided code segment initializes the Hugging Face Endpoint to access the Gemma 2b model. This model is hosted on the Hugging Face Hub, a platform for sharing and deploying machine learning models. The repo_id variable specifies the repository ID for the Gemma model, allowing the code to locate and retrieve the model from the Hugging Face Hub.
+The HuggingFaceEndpoint class is then instantiated with parameters such as max_length and temperature. These parameters configure aspects of the model's behavior, such as the maximum length of input sequences (max_length) and the sampling temperature (temperature). By initializing the Hugging Face Endpoint, the code sets up an interface for interacting with the Gemma model, enabling tasks such as text generation and inference.
+
+
+Getting Answer from the Gemma Chatbot¶
+The get_answer function is designed to retrieve answers to questions within a specific context using a conversational retrieval chain.
+
+First, it sets up a memory buffer to store conversation history. Then, it defines a template for prompts to guide the model in generating answers. The template instructs the model to respond with detailed answers, including code snippets if applicable.
+
+Next, the function creates a conversational retrieval chain using the Gemma model (LLM), a retriever, and the defined memory buffer and prompt template. The retriever is configured to retrieve relevant documents based on a similarity score threshold.
+
+Finally, the function invokes the retrieval chain with the input question and returns the generated answer. This function enables querying the model for answers within a specific context, facilitating detailed and contextually relevant responses.
